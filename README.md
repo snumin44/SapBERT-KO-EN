@@ -65,9 +65,10 @@ sh run_train.sh
 
 - 어휘 사전에 영어 토큰이 포함되었다면 **한국어 모델**도 사용할 수 있습니다.
   - 학습 전 한·영 의료 용어를 어휘 사전에 추가하는 것도 가능합니다.
-  - 다국어 모델인 XLM-RoBERTa 모델도 코드 수정 없이 바로 사용할 수 있도록 구현했습니다. 
+  - 다국어 모델인 XLM-RoBERTa 모델도 코드 수정 없이 바로 사용할 수 있도록 구현했습니다.
+    
+- 학습 모델의 체크 포인트는 [HuggingFace 레포](https://huggingface.co/snumin44/sap-bert-ko-en)에서 다운로드 할 수 있습니다. 
 
-- 학습한 모델은 다음과 같이 사용할 수 있습니다.
 ```python
 import numpy as np
 from transformers import AutoModel, AutoTokenizer
