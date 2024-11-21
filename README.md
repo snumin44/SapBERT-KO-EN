@@ -31,13 +31,14 @@
 - KOSTOM은 모든 한국어 용어에 대응하는 영어 용어 및 다양한 종류의 의료 코드를 함께 제시합니다.
 - Pre-processing을 통해 동일한 코드를 지닌 용어들을 '쌍(pair)'으로 구성해 학습 데이터를 구축합니다.
 ```
+sent0, sent1, code
 
 ```
 
 &nbsp;
 
-
 ## 4. Implementation
+
 
 
 ## 5. Example
