@@ -18,11 +18,13 @@
 - 한국 의료 기록은 **한·영 혼용체**로 이루어져 있어 한·영 용어 간의 동의어까지 처리해야 합니다.  
 - **SapBERT-KO-EN**는 이 문제를 해결하기 위해 한국어 용어와 영어 용어를 모두 정렬한 모델입니다.  
 
+&nbsp;&nbsp;&nbsp;&nbsp;(※위 그림은 )
+
 ## 2. Model Structure
 
-- 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다.
-- Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. 
-
+- 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다. [\[code\]]()
+- Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. [\[code\]]()
+  
 
 ## 3. Training Data
 - 의료 용어 사전으로, 영어 중심의 UMLS 대신 한국어 중심의 **KOSTOM**을 사용했습니다.   
@@ -31,4 +33,7 @@
 &nbsp;
 
 
-## 2. Training
+## 4. Implementation
+
+
+## 5. Example
