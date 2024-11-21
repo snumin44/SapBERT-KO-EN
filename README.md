@@ -10,8 +10,7 @@
 - SapBERT는 수많은 **의료 동의어**를 동일한 의미로 처리하기 위한 사전 학습 방법론입니다.
 - Multi-Similarity Loss를 이용해 **동일한 의료 코드**를 지닌 용어 간의 유사도를 키우는 방식으로 학습합니다.
 
-<>
-
+<img src="sapbert_ko_en.PNG" alt="example image" width="500" height="250"/>
 
 - 한국 의료 기록은 **한·영 혼용체**로 이루어져 있기 때문에 한·영 용어 간의 동의어까지 처리해야 합니다.  
-
+- **SapBERT-KO-EN**는  
