@@ -23,4 +23,8 @@
 **(2) Model Structure**
 
 - 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다.
-- 의조넝 문제가 있는 Pytorch Metric Learning 라이브러리를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. 
+- Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. 
+
+**(3) Training Data**
+- 의료 용어 사전으로, 영어 중심의 UMLS 대신 한국어 중심의 **KOSTOM**을 사용했습니다.   
+- KOSTOM은 모든 한국어 용어에 대해 대응하는 영어 용어를 함께 제시합니다.  
