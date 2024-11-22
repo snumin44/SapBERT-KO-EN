@@ -22,8 +22,8 @@
 
 ## 2. Model Structure
 
-- 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다. [\[code\]]()
-- Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. [\[code\]]()
+- 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/blob/main/src/model.py)
+- Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/blob/main/src/loss.py)
   
 
 ## 3. Training Data
@@ -41,10 +41,10 @@ Liver Cirrhosis, Hepatic Cirrhosis, C0023890
 ## 4. Implementation
 
 **(1) Pre-processing**
-- '' 파일을 이용해 KOSTOM 을 학습을 위한 데이터 셋으로 변환할 수 있습니다. [\[code\]]()
+- **'kostom_preprocessing.ipynb'** 를 이용해 KOSTOM을 학습을 위한 데이터 셋으로 변환할 수 있습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/tree/main/data)
 
 **(2) Training**
-- train 디렉토리의 쉘 스크립트를 이용해 모델을 학습할 수 있습니다.
+- train 디렉토리의 쉘 스크립트를 이용해 모델을 학습할 수 있습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/tree/main/train)
 - 쉘 스크립트에서 베이스 모델 및 하이퍼 파라미터를 직접 수정할 수 있습니다.  
 ```
 cd train
@@ -73,18 +73,19 @@ sh run_train.sh
 import numpy as np
 from transformers import AutoModel, AutoTokenizer
 
-model_path = 'snumin44/simcse-ko-bert-supervised'
+model_path = 'snumin44/sap-bert-ko-en'
 model = AutoModel.from_pretrained(model_path)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 
-query = '내일 아침에 비가 올까요?'
+query = '간경화'
 
 targets = [
-    '내일 아침에 우산을 챙겨야 합니다.',
-    '어제 저녁에는 비가 많이 내렸습니다.',
-    '청계천은 대한민국 서울에 있습니다.',
-    '이번 주말에 축구 대표팀 경기가 있습니다.',
-    '저는 매일 아침 일찍 일어나 책을 읽습니다.'
+    'liver cirrhosis',
+    '간경변',
+    'liver cancer',
+    '간암',
+    'brain tumor',
+    '뇌종양'
 ]
 
 query_feature = tokenizer(query, return_tensors='pt')
@@ -102,13 +103,18 @@ for idx, target in enumerate(targets):
     print(f"Similarity between query and target {idx}: {similarity:.4f}")
 ```
 ```
-Similarity between query and target 0: 0.7864
-Similarity between query and target 1: 0.5695
-Similarity between query and target 2: 0.2646
-Similarity between query and target 3: 0.3055
-Similarity between query and target 4: 0.3738
+Similarity between query and target 0: 0.7145
+Similarity between query and target 1: 0.7186
+Similarity between query and target 2: 0.6183
+Similarity between query and target 3: 0.6972
+Similarity between query and target 4: 0.3929
+Similarity between query and target 5: 0.4260
 ```
 
 ## 6. Fine-tuning Example
 
+- 논문에서는 **Medical Entity Linking** 테스크에 대해 Fine-tuning 을 진행했습니다.
+- 다음과 같이 **Medical QA** 데이터 셋을 이용해 검색 모델로 Fine-tuning 하는 것도 가능합니다.
+  - Medical QA 데이터 셋으로 AI Hub의 **'초거대 AI 헬스케어 질의응답 데이터'** 데이터 셋을 이용했습니다.
+  - 베이스 모델은 'snumin44/sap-bert-ko-en'을 사용했고, [DPR-KO 코드](https://github.com/snumin44/DPR-KO)로 Fine-tuning을 진행했습니다.   
 
