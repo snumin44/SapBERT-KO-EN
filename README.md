@@ -18,14 +18,13 @@
 - 한국 의료 기록은 **한·영 혼용체**로 이루어져 있어 한·영 용어 간의 동의어까지 처리해야 합니다.  
 - **SapBERT-KO-EN**는 이 문제를 해결하기 위해 한국어 용어와 영어 용어를 모두 정렬한 모델입니다.  
 
-&nbsp;&nbsp;&nbsp;&nbsp;(※위 그림은 )
+&nbsp;&nbsp;&nbsp;&nbsp;(※위 그림은 [Yang et al.(2021)](https://aclanthology.org/2022.findings-emnlp.127/) 논문의 그림을 참고했습니다.)
 
 ## 2. Model Structure
 
 - 성능 향상을 위해 Bi-Encoder 구조를 **Single-Encoder 구조**로 변경했습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/blob/main/src/model.py)
 - Pytorch Metric Learning 패키지를 사용하지 않고 Multi Simliarity Loss를 직접 구현했습니다. [\[code\]](https://github.com/snumin44/SapBERT-KO-EN/blob/main/src/loss.py)
   
-
 ## 3. Training Data
 - 의료 용어 사전으로, 영어 중심의 UMLS 대신 한국어 중심의 **KOSTOM**을 사용했습니다.   
 - KOSTOM은 모든 한국어 용어에 대응하는 영어 용어 및 다양한 종류의 의료 코드를 함께 제시합니다.
@@ -115,9 +114,14 @@ Similarity between query and target 5: 0.4260
 
 - 논문에서는 **Medical Entity Linking** 테스크에 대해 Fine-tuning 을 진행했습니다.
 - 다음과 같이 **Medical QA** 데이터 셋을 이용해 검색 모델로 Fine-tuning 하는 것도 가능합니다.
-  - Medical QA 데이터 셋으로 AI Hub의 **'초거대 AI 헬스케어 질의응답 데이터'** 데이터 셋을 이용했습니다.
-  - 베이스 모델은 'snumin44/sap-bert-ko-en'을 사용했고, [DPR-KO 코드](https://github.com/snumin44/DPR-KO)로 Fine-tuning을 진행했습니다.   
+  - Medical QA 데이터 셋으로 AI Hub의 **[초거대 AI 헬스케어 질의응답 데이터](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=71762)** 데이터 셋을 이용했습니다.
+  - 베이스 모델은 'snumin44/sap-bert-ko-en'을 사용했고, [DPR-KO 코드](https://github.com/snumin44/DPR-KO)로 Fine-tuning을 진행했습니다.
+  - 아래 데모에서 영어 용어를 사용해 검색해도 적절한 텍스트가 검색되는 것을 확인할 수 있습니다.
 
 <p align="center">
 <img src="medical_search.gif" width="480" height="280" alt="Medical Search Engine (Demo)">
 </p>
+
+- 해당 모델의 체크 포인트는 HuggingFace 레포에서 다운로드 할 수 있습니다.
+  - Question Model : [snumin44/medical-biencoder-ko-bert-question](snumin44/medical-biencoder-ko-bert-question)
+  - Context Model : [snumin44/medical-biencoder-ko-bert-context](snumin44/medical-biencoder-ko-bert-context)
