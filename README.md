@@ -118,3 +118,6 @@ Similarity between query and target 5: 0.4260
   - Medical QA 데이터 셋으로 AI Hub의 **'초거대 AI 헬스케어 질의응답 데이터'** 데이터 셋을 이용했습니다.
   - 베이스 모델은 'snumin44/sap-bert-ko-en'을 사용했고, [DPR-KO 코드](https://github.com/snumin44/DPR-KO)로 Fine-tuning을 진행했습니다.   
 
+<p align="center">
+<img src="medical_search.gif" width="480" height="280" alt="Medical Search Engine (Demo)">
+</p>
